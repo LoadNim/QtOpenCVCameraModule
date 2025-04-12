@@ -1,0 +1,18 @@
+# Qt build artifacts
+build/
+*.user
+*.pro.user
+*.o
+*.obj
+*.exe
+*.log
+*.cache
+*.tmp
+*.ilk
+*.pch
+*.sdf
+*.opensdf
+*.tlog
+*.db
+*.uCFgLr
+CMakeLists.txt.user
