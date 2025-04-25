@@ -19,4 +19,14 @@ QImage FrameProcessor::matToQImage(const cv::Mat& matImg)
                   matImg.step, QImage::Format_RGB888);
 }
 
+void FrameProcessor::saveImg(const cv::Mat& matImg)
+// cv::Mat 이미지를 저장하는 함수
+// param: cv::Mat 카메라 프레임 이미지
+{
+    QString fileName = QString("capture_%1.jpg")
+                           .arg(QDateTime::currentDateTime().toString("yyyyMMdd_hhmmss"));
+    cv::imwrite(fileName.toStdString(), matImg);
+    qDebug() << "이미지 저장 완료, 파일 이름: " << fileName;
+}
+
 FrameProcessor::~FrameProcessor() {}

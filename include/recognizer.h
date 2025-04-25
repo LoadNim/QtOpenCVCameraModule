@@ -15,8 +15,8 @@ class Recognizer
 public:
     Recognizer();
     ~Recognizer();
-    void faceDetect(cv::Mat&);          // 안면을 검출하는 함수
-    void qrDetect(cv::Mat&);            // QR을 검출하는 함수
+    bool faceDetect(cv::Mat&);          // 안면을 검출하는 함수
+    bool qrDetect(cv::Mat&);            // QR을 검출하는 함수
 
 private:
     cv::CascadeClassifier m_faceModel;  // 얼굴 감지하는 모델
