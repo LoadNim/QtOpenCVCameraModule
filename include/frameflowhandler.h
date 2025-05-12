@@ -7,6 +7,7 @@
 
 class FrameFlowHandler
 {
+
 public:
     FrameFlowHandler();
     ~FrameFlowHandler();

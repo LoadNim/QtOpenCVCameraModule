@@ -11,8 +11,8 @@ CamManager::CamManager()
     }
 
     // 카메라 해상도 설정
-    m_cam.set(cv::CAP_PROP_FRAME_WIDTH, 1280);
-    m_cam.set(cv::CAP_PROP_FRAME_HEIGHT, 720);
+    m_cam.set(cv::CAP_PROP_FRAME_WIDTH, 1920);
+    m_cam.set(cv::CAP_PROP_FRAME_HEIGHT, 1080);
 }
 
 cv::Mat CamManager::frameCapture()

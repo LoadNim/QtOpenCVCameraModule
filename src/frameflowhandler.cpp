@@ -4,7 +4,7 @@ FrameFlowHandler::FrameFlowHandler()
 {
     m_camManager = new CamManager();
     m_recognizer = new Recognizer();
-    m_recoMenu = RecoMode::None;
+    m_recoMenu = RecoMode::Face;
     m_detected = false;
     m_firstDetectedTime = 0;
     m_lastDetectedTime = 0;

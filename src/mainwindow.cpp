@@ -6,54 +6,33 @@
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
 {
-    // 프로그램 윈도우 설정
-    setWindowTitle("QtOpenCVCamerModule");
-    resize(1280, 720);
-
-    // 인식 메뉴 구성
-    m_recoMenu = menuBar()->addMenu("인식 설정");
-    m_face = new QAction("안면 인식", this);
-    m_qr = new QAction("QR 인식", this);
-    m_recoMenu->addAction(m_face);
-    m_recoMenu->addAction(m_qr);
-
-    // 상태줄 구성
-    statusBar()->showMessage("카메라 작동중...");
-
     // 프레임 처리 흐름 핸들러 설정
     m_frameFlowHandler = new FrameFlowHandler();
 
     // 프레임 출력 영역 설정
-    m_label = new QLabel(this);
-    setCentralWidget(m_label);
+    m_mainInterface = new MainInterface();
+    setCentralWidget(m_mainInterface);
 
     // 타이머 설정
     m_timer = new QTimer(this);
     m_timer->start(1000 / TARGET_FPS);
-
-    // 슬롯 함수 설정
     connect(m_timer, &QTimer::timeout, this, &MainWindow::callHandler);
-    connect(m_face, &QAction::triggered, this, [=](){
-        m_frameFlowHandler->setRecoMenu(RecoMode::Face);
-        statusBar()->showMessage("안면 인식 작동중...");
+
+    // 번호 입력 대응
+    connect(m_mainInterface, &MainInterface::phoneNumberSubmit, this, [=](const QString& number) {
+        m_frameFlowHandler->setRecoMenu(RecoMode::QR);     // QR 모드 전환
     });
-    connect(m_qr, &QAction::triggered, this, [=](){
-        m_frameFlowHandler->setRecoMenu(RecoMode::QR);
-        statusBar()->showMessage("QR 인식 작동중...");
+
+    // 인식 모드 리셋 대응
+    connect(m_mainInterface, &MainInterface::resetRecoMode, this, [=](){
+        m_frameFlowHandler->setRecoMenu(RecoMode::Face);
     });
 }
 
 void MainWindow::callHandler()
 // 프레임 하나에 대한 처리 흐름 실행
 {
-    displayImg(m_frameFlowHandler->flowHandling());
-}
-
-void MainWindow::displayImg(QImage frameImg)
-// 이미지를 화면에 표시하는 함수
-{
-    QPixmap pixMap = QPixmap::fromImage(frameImg);
-    m_label->setPixmap(pixMap);
+    m_mainInterface->displayImg(m_frameFlowHandler->flowHandling());
 }
 
 MainWindow::~MainWindow() {

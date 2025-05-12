@@ -36,17 +36,27 @@ bool Recognizer::qrDetect(cv::Mat& frame)
 // return: bool 검출 여부
 {
     std::vector<cv::Point> qrPoints;                    // 검출된 QR의 꼭짓점 좌표
-    std::string decoded =                               // QR 검출 및 디코딩
+    m_decodedQR =                                       // QR 검출 및 디코딩
         m_qrModel.detectAndDecode(frame, qrPoints);
 
-    bool detect = !qrPoints.empty();
+    if (qrPoints.empty()){
+        m_decodedQR.clear();
+    }
 
-    if (detect) {                            // 검출 영역에 사각형 표시
+    bool detect = !qrPoints.empty();
+    if (detect) {                                       // 검출 영역에 사각형 표시
         std::vector<std::vector<cv::Point>> contours{qrPoints};
         cv::polylines(frame, contours, true, cv::Scalar(255, 0, 0), 2);
     }
 
     return detect;
+}
+
+QString Recognizer::getDecodedQR()
+// 디코딩 된 QR 문자열 값을 반환하는 함수
+// return: QString 디코딩 된 QR 문자열
+{
+    return QString::fromStdString(m_decodedQR);
 }
 
 Recognizer::~Recognizer(){}
