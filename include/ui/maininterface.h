@@ -17,6 +17,7 @@ class MainInterface : public QStackedWidget
 public:
     MainInterface(QWidget* parent = nullptr);
     ~MainInterface(){}
+    void setFrameImg(QImage frame);
 
 signals:
     void setEntryFaceMode();

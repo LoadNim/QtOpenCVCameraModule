@@ -10,7 +10,7 @@ QRWizard::QRWizard(QStackedWidget* parent) : QStackedWidget(parent)
     setCurrentWidget(m_qrHomePurpose);
 
     connect(m_qrHomePurpose, &QRHomePurpose::nextBtnSignal, this, [this]{
-        setCurrentWidget(m_qrHomePurpose);
+        setCurrentWidget(m_qrPhone);
     });
 
     connect(m_qrHomePurpose, &QRHomePurpose::prevBtnSignal, this, [this]{

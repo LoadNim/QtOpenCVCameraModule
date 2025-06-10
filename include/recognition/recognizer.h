@@ -4,10 +4,14 @@
 #include <opencv2/opencv.hpp>
 #include <QDebug>
 
+enum class SysMode{
+    Regist = 0,
+    Entry = 1
+};
+
 enum class RecoMode{
-    None = 0,
-    Face = 1,
-    QR = 2
+    Face = 0,
+    QR = 1
 };
 
 class Recognizer

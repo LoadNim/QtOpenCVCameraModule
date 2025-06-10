@@ -44,3 +44,8 @@ MainInterface::MainInterface(QWidget* parent) : QStackedWidget(parent)
         setCurrentWidget(m_toggleMenu);
     });
 }
+
+void MainInterface::setFrameImg(QImage img)
+{
+    m_videoLable->displayFrame(img);
+}

@@ -4,7 +4,7 @@ FrameFlowHandler::FrameFlowHandler()
 {
     m_camManager = new CamManager();
     m_recognizer = new Recognizer();
-    m_recoMenu = RecoMode::Face;
+    m_recoMode = RecoMode::Face;
     m_detected = false;
     m_firstDetectedTime = 0;
     m_lastDetectedTime = 0;
@@ -18,7 +18,7 @@ QImage FrameFlowHandler::flowHandling()
     m_originFrameImg = m_frameImg.clone();
 
     bool detected = false;
-    switch (m_recoMenu) {
+    switch (m_recoMode) {
     case RecoMode::Face:
         detected = m_recognizer->faceDetect(m_frameImg);
         break;
@@ -35,11 +35,12 @@ QImage FrameFlowHandler::flowHandling()
     return m_frameProcessor.matToQImage(m_frameImg);
 }
 
-void FrameFlowHandler::setRecoMenu(RecoMode mode)
-// 검출 모듈 모드 설정용 함수
-// param: int 모드 값
+void FrameFlowHandler::setModes(SysMode sysMode, RecoMode recoMode)
+// 시스템 모드, 검출 모듈 모드 설정용
+// param: int 모드 값, int 모드 값
 {
-    m_recoMenu = mode;
+    m_sysMode = sysMode;
+    m_recoMode = recoMode;
 }
 
 void FrameFlowHandler::detectHandling(bool detected)
