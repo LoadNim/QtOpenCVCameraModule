@@ -50,7 +50,10 @@ void MainInterface::setFrameImg(QImage img)
     m_videoLable->displayFrame(img);
 }
 
-void MainInterface::goFirstScreen()
+void MainInterface::initScreen()
 {
+    m_toggleMenu->initScreen();
+    m_regist->initScreen();
+    m_qrWizard->initScreen();
     setCurrentWidget(m_toggleMenu);
 }

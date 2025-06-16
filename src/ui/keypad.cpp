@@ -29,7 +29,7 @@ Keypad::Keypad(QWidget* parent) : QWidget(parent)
     updateBtnState();
 }
 
-void Keypad::initKeypad(int length)
+void Keypad::initKeypad()
 {
     m_inputNum.clear();
     updateBtnState();

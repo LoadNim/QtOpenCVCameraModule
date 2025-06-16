@@ -20,6 +20,7 @@ class Regist : public QStackedWidget
 public:
     Regist(QStackedWidget* parent = nullptr);
     ~Regist(){}
+    void initScreen();
     void clearData();
 
 signals:

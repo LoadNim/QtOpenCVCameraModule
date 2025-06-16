@@ -13,7 +13,7 @@ class Keypad : public QWidget
 public:
     Keypad(QWidget* parent = nullptr);
     ~Keypad(){}
-    void initKeypad(int);
+    void initKeypad();
     void updateBtnState();
     QString getNumber() const {return m_inputNum;}
 

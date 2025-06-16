@@ -21,12 +21,14 @@ set(INCLUDE_DIR ${PROJECT_SOURCE_DIR}/include)
 set(INCLUDE_CAMERA ${INCLUDE_DIR}/camera)
 set(INCLUDE_RECOGNITION ${INCLUDE_DIR}/recognition)
 set(INCLUDE_UI ${INCLUDE_DIR}/ui)
+set(INCLUDE_AI ${INCLUDE_DIR}/ai)
 
 # 소스 디렉토리 정리
 set(SRC_DIR ${PROJECT_SOURCE_DIR}/src)
 set(SRC_CAMERA ${SRC_DIR}/camera)
 set(SRC_RECOGNITION ${SRC_DIR}/recognition)
 set(SRC_UI ${SRC_DIR}/ui)
+set(SRC_AI ${SRC_DIR}/ai)
 
 # 소스 파일 목록
 set(PROJECT_SOURCES
@@ -57,6 +59,10 @@ set(PROJECT_SOURCES
     ${SRC_UI}/keypad.cpp
     ${INCLUDE_UI}/regist.h
     ${SRC_UI}/regist.cpp
+
+    # AI
+    ${INCLUDE_AI}/userverifier.h
+    ${SRC_AI}/userverifier.cpp
 )
 
 # 실행 파일 생성
@@ -72,6 +78,8 @@ qt_add_qml_module(QtOpenCVCameraModule
     URI VirtualKeyboardApp
     VERSION 1.0
     SOURCES
+    SOURCES src/ai/userverifier.cpp
+    SOURCES include/ai/userverifier.h
 )
 
 # include 디렉토리 등록
@@ -80,6 +88,7 @@ target_include_directories(QtOpenCVCameraModule PRIVATE
     ${INCLUDE_CAMERA}
     ${INCLUDE_RECOGNITION}
     ${INCLUDE_UI}
+    ${INCLUDE_AI}
     ${OpenCV_INCLUDE_DIRS}
 )
 

@@ -22,6 +22,11 @@ ToggleMenu::ToggleMenu(QStackedWidget* parent) : QStackedWidget(parent)
     connect(m_selectRecoMenu, &SelectRecoMenu::selectEntryQRBtn, this, &ToggleMenu::selectEntryQRBtn);
 }
 
+void ToggleMenu::initScreen()
+{
+    setCurrentWidget(m_mainMenu);
+}
+
 MainMenu::MainMenu(QWidget* parent) : QWidget(parent)
 {
     m_mainMenuLayout = new QHBoxLayout(this);

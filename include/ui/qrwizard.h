@@ -20,6 +20,7 @@ class QRWizard : public QStackedWidget
 public:
     QRWizard(QStackedWidget* parent = nullptr);
     ~QRWizard(){}
+    void initScreen();
     void clearData();
 
 signals:

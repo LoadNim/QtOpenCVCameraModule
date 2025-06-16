@@ -14,6 +14,9 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
     m_mainInterface = new MainInterface();
     setCentralWidget(m_mainInterface);
 
+    // 데모용 ai 모듈 연계
+    m_userverifier = new UserVerifier();
+
     // 타이머 생성
     m_timer = new QTimer(this);
     connect(m_timer, &QTimer::timeout, this, [this]{
@@ -38,23 +41,30 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
     connect(m_frameFlowHandler, &FrameFlowHandler::entryNext, this, [this]{
         statusBar()->showMessage("식별 진행중...");
         stopTimer();
+        m_userverifier->entryResult();
     });
 
     connect(m_frameFlowHandler, &FrameFlowHandler::entryFail, this, [this]{
         statusBar()->showMessage("인식 실패...");
-        m_mainInterface->goFirstScreen();
+        m_mainInterface->initScreen();
         stopTimer();
     });
 
     connect(m_frameFlowHandler, &FrameFlowHandler::registNext, this, [this]{
         statusBar()->showMessage("등록 진행중...");
+        m_userverifier->regist();
         stopTimer();
     });
 
     connect(m_frameFlowHandler, &FrameFlowHandler::registFail, this, [this]{
         statusBar()->showMessage("등록 실패...");
-        m_mainInterface->goFirstScreen();
+        m_mainInterface->initScreen();
         stopTimer();
+    });
+
+    connect(m_userverifier, &UserVerifier::doneSignal, this, [this](const QString& result){
+        statusBar()->showMessage(result);
+        m_mainInterface->initScreen();
     });
 }
 

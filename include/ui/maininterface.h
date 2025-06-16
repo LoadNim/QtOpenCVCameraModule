@@ -18,7 +18,7 @@ public:
     MainInterface(QWidget* parent = nullptr);
     ~MainInterface(){}
     void setFrameImg(QImage frame);
-    void goFirstScreen();
+    void initScreen();
 
 signals:
     void setEntryFaceMode();

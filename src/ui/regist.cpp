@@ -36,6 +36,11 @@ void Regist::clearData()
     m_registPhone->clearData();
 }
 
+void Regist::initScreen()
+{
+    setCurrentWidget(m_registHomeName);
+}
+
 RegistHomeName::RegistHomeName(QWidget* parent) : QWidget(parent)
 {
     m_registHomeNameLayout = new QVBoxLayout(this);
@@ -133,4 +138,5 @@ QString RegistPhone::getData()
 void RegistPhone::clearData()
 {
     m_inputPhoneNumber->clear();
+    m_keypad->initKeypad();
 }

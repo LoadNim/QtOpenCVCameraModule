@@ -36,6 +36,11 @@ void QRWizard::clearData()
     m_qrPhone->clearData();
 }
 
+void QRWizard::initScreen()
+{
+    setCurrentWidget(m_qrHomePurpose);
+}
+
 QRHomePurpose::QRHomePurpose(QWidget* parent) : QWidget(parent)
 {
     m_qrHomePurposeLayout = new QVBoxLayout(this);
@@ -133,4 +138,5 @@ QString QRPhone::getData()
 void QRPhone::clearData()
 {
     m_inputPhoneNumber->clear();
+    m_keypad->initKeypad();
 }

@@ -16,6 +16,7 @@ class ToggleMenu : public QStackedWidget
 public:
     ToggleMenu(QStackedWidget* parent = nullptr);
     ~ToggleMenu(){}
+    void initScreen();
 
 signals:
     void selectRegistBtn();
