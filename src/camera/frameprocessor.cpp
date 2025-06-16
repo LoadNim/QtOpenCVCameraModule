@@ -23,10 +23,17 @@ void FrameProcessor::saveImg(const cv::Mat& matImg)
 // cv::Mat 이미지를 저장하는 함수
 // param: cv::Mat 카메라 프레임 이미지
 {
-    QString fileName = QString("capture_%1.jpg")
-                           .arg(QDateTime::currentDateTime().toString("yyyyMMdd_hhmmss"));
+    QString fileName = QString("LastImg.jpg");
     cv::imwrite(fileName.toStdString(), matImg);
     qDebug() << "이미지 저장 완료, 파일 이름: " << fileName;
+}
+
+void FrameProcessor::saveImg(const cv::Mat& matImg, const QString& filePath)
+// cv::Mat 이미지를 저장하는 함수
+// param: cv::Mat 카메라 프레임 이미지, QString::파일 경로
+{
+    cv::imwrite(filePath.toStdString(), matImg);
+    qDebug() << "이미지 저장 완료, 경로: " << filePath;
 }
 
 FrameProcessor::~FrameProcessor() {}

@@ -49,3 +49,8 @@ void MainInterface::setFrameImg(QImage img)
 {
     m_videoLable->displayFrame(img);
 }
+
+void MainInterface::goFirstScreen()
+{
+    setCurrentWidget(m_toggleMenu);
+}

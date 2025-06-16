@@ -34,6 +34,28 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
         m_frameFlowHandler->setModes(SysMode::Regist, RecoMode::Face);
         startTimer();
     });
+
+    connect(m_frameFlowHandler, &FrameFlowHandler::entryNext, this, [this]{
+        statusBar()->showMessage("식별 진행중...");
+        stopTimer();
+    });
+
+    connect(m_frameFlowHandler, &FrameFlowHandler::entryFail, this, [this]{
+        statusBar()->showMessage("인식 실패...");
+        m_mainInterface->goFirstScreen();
+        stopTimer();
+    });
+
+    connect(m_frameFlowHandler, &FrameFlowHandler::registNext, this, [this]{
+        statusBar()->showMessage("등록 진행중...");
+        stopTimer();
+    });
+
+    connect(m_frameFlowHandler, &FrameFlowHandler::registFail, this, [this]{
+        statusBar()->showMessage("등록 실패...");
+        m_mainInterface->goFirstScreen();
+        stopTimer();
+    });
 }
 
 void MainWindow::startTimer()
@@ -44,6 +66,13 @@ void MainWindow::startTimer()
     }
 }
 
-MainWindow::~MainWindow() {
+void MainWindow::stopTimer()
+{
+    if (m_timer->isActive()){
+        m_timer->stop();
+    }
+}
+
+MainWindow::~MainWindow(){
     delete m_frameFlowHandler;
 }

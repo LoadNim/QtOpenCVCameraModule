@@ -21,7 +21,7 @@ bool Recognizer::faceDetect(cv::Mat& frame)
 
     std::vector<cv::Rect> faces;                        // 검출된 안면 영역 좌표
     m_faceModel.detectMultiScale                        // 안면 검출
-        (gray, faces, 1.05, 2, 0, cv::Size(100, 100));
+        (gray, faces, 1.1, 3, 0, cv::Size(300, 300));
 
     for (const auto& rect : faces) {                    // 검출된 영역에 사각형 표시
         cv::rectangle(frame, rect, cv::Scalar(0, 255, 0), 2);

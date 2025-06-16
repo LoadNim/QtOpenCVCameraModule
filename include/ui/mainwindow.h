@@ -19,6 +19,7 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
     void startTimer();
+    void stopTimer();
 
 private:
     QTimer* m_timer;                        // 프레임 반복 실행용 타이머
