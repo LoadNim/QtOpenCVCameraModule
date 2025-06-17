@@ -33,6 +33,9 @@ MainMenu::MainMenu(QWidget* parent) : QWidget(parent)
     m_entryBtn = new QPushButton("출입" ,this);
     m_registBtn = new QPushButton("등록", this);
 
+    m_entryBtn->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
+    m_registBtn->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
+
     m_mainMenuLayout->addWidget(m_entryBtn);
     m_mainMenuLayout->addWidget(m_registBtn);
     setLayout(m_mainMenuLayout);
@@ -48,6 +51,10 @@ SelectRecoMenu::SelectRecoMenu(QWidget* parent) : QWidget(parent)
     m_faceBtn = new QPushButton("안면", this);
     m_qrBtn = new QPushButton("QR", this);
     m_prevBtn = new QPushButton("이전", this);
+
+    // 버튼 확장 설정
+    m_faceBtn->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
+    m_qrBtn->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
 
     m_RecoMenuBtnLayout->addWidget(m_faceBtn);
     m_RecoMenuBtnLayout->addWidget(m_qrBtn);

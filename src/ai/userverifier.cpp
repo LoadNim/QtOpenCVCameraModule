@@ -15,20 +15,20 @@ UserVerifier::UserVerifier()
         emit doneSignal(result);
     });
 
-    // // 에러 처리 추가
-    // connect(m_process, &QProcess::errorOccurred, this, [this](QProcess::ProcessError error) {
-    //     qDebug() << "Process error:" << error;
-    //     qDebug() << "Error string:" << m_process->errorString();
-    // });
+    // 에러 처리 추가
+    connect(m_process, &QProcess::errorOccurred, this, [this](QProcess::ProcessError error) {
+        qDebug() << "Process error:" << error;
+        qDebug() << "Error string:" << m_process->errorString();
+    });
 
-    // connect(m_process, QOverload<int, QProcess::ExitStatus>::of(&QProcess::finished),
-    //         this, [this](int exitCode, QProcess::ExitStatus exitStatus) {
-    //             qDebug() << "Process finished with exit code:" << exitCode;
-    //             qDebug() << "Exit status:" << exitStatus;
-    //             if (exitCode != 0) {
-    //                 qDebug() << "Standard error:" << m_process->readAllStandardError();
-    //             }
-    //         });
+    connect(m_process, QOverload<int, QProcess::ExitStatus>::of(&QProcess::finished),
+            this, [this](int exitCode, QProcess::ExitStatus exitStatus) {
+                qDebug() << "Process finished with exit code:" << exitCode;
+                qDebug() << "Exit status:" << exitStatus;
+                if (exitCode != 0) {
+                    qDebug() << "Standard error:" << m_process->readAllStandardError();
+                }
+            });
 }
 
 void UserVerifier::entryResult()

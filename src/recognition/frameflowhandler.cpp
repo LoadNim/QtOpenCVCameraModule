@@ -52,7 +52,7 @@ bool FrameFlowHandler::updateDetectionState(bool detected, qint64 now)
 // param: bool 감지 여부, qint64: 현재 시간
 // return: bool 탐지 여부
 {
-    constexpr qint64 lostImgMs = 500;
+    constexpr qint64 lostImgMs = 1000;
 
     if (detected) {
         if (!m_detected) {
